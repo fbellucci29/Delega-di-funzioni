@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delega di Funzioni</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .main-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .location-date {
+            font-size: 14px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .delegante-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #74b9ff;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            min-width: 180px;
+            color: #2c3e50;
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #333;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .requirement-item {
+            background-color: #f1f2f6;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #74b9ff;
+        }
+        
+        .delegato-info {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-left: 4px solid #00b894;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .functions-list {
+            background-color: #fff5f5;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #fab1a0;
+            margin: 15px 0;
+        }
+        
+        .functions-list ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        .functions-list li {
+            margin-bottom: 8px;
+            color: #2d3436;
+        }
+        
+        .powers-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .power-box {
+            background-color: #f8f9ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #a29bfe;
+        }
+        
+        .power-title {
+            font-weight: bold;
+            color: #6c5ce7;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        
+        .budget-table th {
+            background-color: #74b9ff;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .budget-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .obligations-list {
+            counter-reset: obligation-counter;
+        }
+        
+        .obligations-list li {
+            counter-increment: obligation-counter;
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .obligations-list li::before {
+            content: counter(obligation-counter);
+            position: absolute;
+            left: -25px;
+            top: 0;
+            background-color: #74b9ff;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .signature-box {
+            padding: 20px;
+            border: 2px dashed #74b9ff;
+            background-color: #f8f9ff;
+            border-radius: 5px;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+        
+        .signature-line {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 10px;
+        }
+        
+        .footer-notes {
+            background-color: #f1f2f6;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            border-left: 4px solid #636e72;
+        }
+        
+        .footer-notes h4 {
+            color: #2d3436;
+            margin-top: 0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 20px;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="main-title">Delega di Funzioni</div>
+            <div class="subtitle">Art. 16 del Decreto Legislativo 9 aprile 2008, n. 81</div>
+            <div class="location-date">Milano, 15 gennaio 2025</div>
+        </div>
+
+        <div class="section-title">Il Sottoscritto</div>
+        <div class="delegante-info">
+            <div class="info-row">
+                <span class="info-label">Nome e Cognome:</span>
+                <span class="info-value">Mario Bianchi</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Codice Fiscale:</span>
+                <span class="info-value">BNCMRA75H15F205X</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">In qualità di:</span>
+                <span class="info-value">Amministratore Delegato della società METALTECH S.r.l.</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Con sede legale in:</span>
+                <span class="info-value">Via dell'Industria 45, 20100 Milano (MI)</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Codice Fiscale/P.IVA:</span>
+                <span class="info-value">12345678901</span>
+            </div>
+        </div>
+
+        <div class="section-title">Premesse</div>
+        <p><strong>VISTO</strong> il Decreto Legislativo 9 aprile 2008, n. 81 "Testo unico sulla salute e sicurezza sul lavoro" e successive modificazioni;</p>
+        <p><strong>VISTO</strong> in particolare l'art. 16 del suddetto decreto che disciplina la delega di funzioni;</p>
+        <p><strong>CONSIDERATO</strong> che la delega di funzioni è ammessa con i limiti e alle condizioni previste dall'art. 16, comma 3, del D.Lgs. 81/08;</p>
+        <p><strong>RILEVATO</strong> che il Sig. Giuseppe Rossi possiede i seguenti requisiti:</p>
+
+        <div class="section-title">Requisiti del Delegato</div>
+        <div class="requirements-grid">
+            <div class="requirement-item">
+                <strong>Qualifica professionale:</strong> Ingegnere meccanico, iscritto all'Ordine degli Ingegneri di Milano n. 15432
+            </div>
+            <div class="requirement-item">
+                <strong>Esperienza specifica:</strong> 12 anni in processi di lavorazione meccanica e gestione produzione
+            </div>
+            <div class="requirement-item">
+                <strong>Formazione in sicurezza:</strong> Corso dirigenti 16 ore (2022), Corso gestione emergenze (2023)
+            </div>
+            <div class="requirement-item">
+                <strong>Ultimo aggiornamento:</strong> 15 marzo 2024
+            </div>
+        </div>
+
+        <div class="section-title">Delega</div>
+        <p>Con la presente, ai sensi dell'art. 16 del D.Lgs. 81/08, <strong>DELEGA</strong> al Sig.:</p>
+        
+        <div class="delegato-info">
+            <div class="info-row">
+                <span class="info-label">Nome e Cognome:</span>
+                <span class="info-value">Giuseppe Rossi</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Codice Fiscale:</span>
+                <span class="info-value">RSSGPP80M12F205Y</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Qualifica:</span>
+                <span class="info-value">Responsabile di Produzione</span>
+            </div>
+        </div>
+
+        <p>le seguenti funzioni specifiche in materia di tutela della salute e sicurezza sul lavoro:</p>
+
+        <div class="section-title">Funzioni Delegate</div>
+        <div class="functions-list">
+            <h4>Ambito di applicazione:</h4>
+            <ul>
+                <li><strong>Settore/Reparto:</strong> Reparto lavorazioni meccaniche - Linee produttive 1, 2 e 3</li>
+                <li><strong>Unità produttiva:</strong> Stabilimento di Milano, Via dell'Industria 45</li>
+                <li><strong>N. lavoratori interessati:</strong> 28 operai diretti</li>
+            </ul>
+            
+            <h4>Funzioni specifiche delegate (art. 18 D.Lgs. 81/08):</h4>
+            <ul>
+                <li>Attuazione delle direttive del datore di lavoro organizzando l'attività lavorativa e vigilando su di essa</li>
+                <li>Vigilanza affinché i lavoratori osservino gli obblighi di legge e le disposizioni aziendali</li>
+                <li>Informazione tempestiva dei lavoratori esposti a rischio grave e immediato</li>
+                <li>Richiesta dell'osservanza delle misure per il controllo delle situazioni di rischio in caso di urgenza</li>
+            </ul>
+            
+            <h4>Altre funzioni specifiche:</h4>
+            <ul>
+                <li>Coordinamento manutenzioni programmate</li>
+                <li>Gestione permessi di lavoro a caldo</li>
+                <li>Supervisione utilizzo DPI specifici per lavorazioni meccaniche</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Poteri Attribuiti</div>
+        <div class="powers-section">
+            <div class="power-box">
+                <div class="power-title">Poteri Gerarchici</div>
+                <ul>
+                    <li>Autorità sui lavoratori del reparto (28 operai, 3 capi squadra, 1 manutentore)</li>
+                    <li>Potere di impartire istruzioni vincolanti in materia di sicurezza</li>
+                    <li>Potere disciplinare per violazioni delle norme di sicurezza</li>
+                </ul>
+            </div>
+            
+            <div class="power-box">
+                <div class="power-title">Poteri di Spesa</div>
+                <table class="budget-table">
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Importo</th>
+                    </tr>
+                    <tr>
+                        <td>Limite annuale totale</td>
+                        <td>€ 50.000</td>
+                    </tr>
+                    <tr>
+                        <td>Investimenti sicurezza</td>
+                        <td>€ 30.000</td>
+                    </tr>
+                    <tr>
+                        <td>Formazione personale</td>
+                        <td>€ 15.000</td>
+                    </tr>
+                    <tr>
+                        <td>Acquisto DPI</td>
+                        <td>€ 5.000</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section-title">Mezzi Assegnati</div>
+        <div class="functions-list">
+            <h4>Risorse Economiche:</h4>
+            <ul>
+                <li><strong>Budget annuale dedicato:</strong> € 50.000</li>
+                <li><strong>Modalità di utilizzo:</strong> Autorizzazione autonoma fino a € 2.000, oltre previa approvazione AD</li>
+                <li><strong>Rendicontazione:</strong> Trimestrale con report dettagliato</li>
+            </ul>
+            
+            <h4>Risorse Strumentali:</h4>
+            <ul>
+                <li>Accesso a consulenze esterne (Studio Tecnico Sicurezza Martelli & Associati)</li>
+                <li>Utilizzo laboratori per misurazioni fonometriche e vibrazioni</li>
+                <li>Software gestionale "SafetyPro 2024" con accesso amministratore</li>
+            </ul>
+            
+            <h4>Risorse Umane:</h4>
+            <ul>
+                <li>Personale diretto: 28 operai, 3 capi squadra, 1 manutentore specializzato</li>
+                <li>Collaborazione RSPP esterno (Ing. Anna Verdi)</li>
+                <li>Supporto amministrativo Sig.ra Carla Neri (20% del tempo)</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Obblighi del Delegato</div>
+        <p>Il delegato si impegna a:</p>
+        <ol class="obligations-list">
+            <li>Rispettare integralmente le norme del D.Lgs. 81/08 e successive modificazioni</li>
+            <li>Mantenere aggiornate le proprie competenze con formazione continua (min. 6 ore/anno)</li>
+            <li>Informare tempestivamente il delegante su situazioni critiche (entro 2 ore)</li>
+            <li>Redigere rapporti periodici mensili sull'attività svolta</li>
+            <li>Documentare tutte le attività tramite registro cartaceo e digitale</li>
+        </ol>
+
+        <div class="section-title">Controlli del Delegante</div>
+        <div class="functions-list">
+            <h4>Modalità di controllo:</h4>
+            <ul>
+                <li>Verifiche periodiche ogni 3 mesi con sopralluogo</li>
+                <li>Audit interni 2 volte l'anno con checklist standardizzata</li>
+                <li>Analisi indicatori di performance (infortuni, near miss, non conformità)</li>
+            </ul>
+            
+            <h4>Indicatori di monitoraggio:</h4>
+            <ul>
+                <li>Numero infortuni nel reparto (target: zero con prognosi >3 giorni)</li>
+                <li>Ore di formazione erogate (target: min. 4 ore/anno per operaio)</li>
+                <li>Investimenti in sicurezza (utilizzo budget >80%)</li>
+                <li>Non conformità risolte (target: risoluzione entro 15 giorni)</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Durata e Cessazione</div>
+        <div class="functions-list">
+            <p><strong>Durata:</strong> La presente delega ha durata <strong>indeterminata</strong></p>
+            
+            <h4>Cause di revoca automatica:</h4>
+            <ul>
+                <li>Perdita dei requisiti professionali richiesti</li>
+                <li>Violazioni gravi delle norme di sicurezza</li>
+                <li>Mancato raggiungimento obiettivi per due trimestri consecutivi</li>
+                <li>Cessazione del rapporto di lavoro</li>
+            </ul>
+            
+            <p><strong>Modalità di revoca:</strong> Comunicazione scritta con preavviso di 30 giorni, salvo giusta causa</p>
+        </div>
+
+        <div class="section-title">Accettazione</div>
+        <p>Il sottoscritto Giuseppe Rossi, presa visione della presente delega e dei contenuti della stessa, consapevole degli obblighi e responsabilità che assume ai sensi del D.Lgs. 81/08:</p>
+        <p style="text-align: center; font-weight: bold; color: #2c3e50; font-size: 16px;">
+            ACCETTA ESPRESSAMENTE la delega conferitagli, impegnandosi ad esercitarla con la massima diligenza e nel pieno rispetto delle norme vigenti.
+        </p>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-label">Firma del Delegante</div>
+                <div class="signature-line">Mario Bianchi</div>
+            </div>
+            <div class="signature-box">
+                <div class="signature-label">Firma del Delegato</div>
+                <div class="signature-line">Giuseppe Rossi</div>
+            </div>
+        </div>
+
+        <div class="footer-notes">
+            <h4>Note Informative</h4>
+            <p><strong>Riferimenti normativi:</strong></p>
+            <ul>
+                <li>Art. 16 D.Lgs. 81/08: Delega di funzioni</li>
+                <li>Art. 18 D.Lgs. 81/08: Obblighi del dirigente</li>
+                <li>Art. 37 D.Lgs. 81/08: Formazione dei lavoratori</li>
+            </ul>
+            <p><strong>Validità giuridica:</strong> La presente delega produce effetti esimenti della responsabilità del delegante solo se rispetta tutti i requisiti dell'art. 16 D.Lgs. 81/08.</p>
+            <p><strong>Conservazione:</strong> Il documento deve essere conservato presso l'azienda e reso disponibile agli organi di vigilanza.</p>
+        </div>
+    </div>
+</body>
+</html>
